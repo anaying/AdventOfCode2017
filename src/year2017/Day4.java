@@ -1,5 +1,6 @@
 package year2017;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -29,6 +30,15 @@ public class Day4 {
     }
 
     private static int part2(String input) {
+/*
+        input = """
+                abcde fghij
+                abcde xyz ecdab
+                a ab abc abd abf abj
+                iiii oiii ooii oooi oooo
+                oiii ioii iioi iiio
+                """;
+*/
         Scanner sc = new Scanner(input);
         int sol = 0;
         while (sc.hasNextLine()) {
@@ -36,18 +46,30 @@ public class Day4 {
             LinkedList<String> list = new LinkedList<>();
             boolean valid = true;
             do {
-                String str = scLine.next();
-                for (String s : list) {
-                    if (s.equals(str)) {
+                String word = scLine.next();
+                char[] charsWord = word.toCharArray();
+                LinkedList<String> listWord = new LinkedList<>();
+                for (char c : charsWord) {
+                    listWord.add(String.valueOf(c));
+                }
+                for (String comp : list) {
+                    char[] charsComp = comp.toCharArray();
+                    LinkedList<String> listComp = new LinkedList<>();
+                    for (char c : charsComp) {
+                        listComp.add(String.valueOf(c));
+                    }
+                    Collections.sort(listComp);
+                    Collections.sort(listWord);
+                    if (listComp.equals(listWord)) {
                         valid = false;
-                        break;
                     }
                 }
                 if (valid)
-                    list.add(str);
+                    list.add(word);
             } while (scLine.hasNext() && valid);
             if (valid)
                 sol++;
+//            System.out.println(valid);
         }
         return sol;
     }
@@ -567,6 +589,7 @@ public class Day4 {
                 maudjy okgjga uadjmy dzfrk omd
                 azz ajdcqkd bcafn zaz dcjaqdk gylyzo
                 xzvfbf fopmfxu mvftgr mfupoxf coyhof talcc vpkslo""";
-            System.out.println(part1(input));
+        System.out.println("Solución 1: " + part1(input));
+        System.out.println("Solución 2: " + part2(input));
     }
 }
