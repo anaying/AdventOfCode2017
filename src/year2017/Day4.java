@@ -28,31 +28,6 @@ public class Day4 {
         return sol;
     }
 
-    private static int part2(String input) {
-        Scanner sc = new Scanner(input);
-        int sol = 0;
-        while (sc.hasNextLine()) {
-            Scanner scLine = new Scanner(sc.nextLine()).useDelimiter(" ");
-            LinkedList<String> list = new LinkedList<>();
-            boolean valid = true;
-            do {
-                String str = scLine.next();
-                for (String s : list) {
-                    if (s.equals(str)) {
-                        valid = false;
-                        break;
-                    }
-                }
-                if (valid)
-                    list.add(str);
-            } while (scLine.hasNext() && valid);
-            if (valid)
-                sol++;
-        }
-        return sol;
-    }
-
-
     public static void main(String[] args) {
         String input = """
                 vxjtwn vjnxtw sxibvv mmws wjvtxn icawnd rprh
@@ -567,6 +542,6 @@ public class Day4 {
                 maudjy okgjga uadjmy dzfrk omd
                 azz ajdcqkd bcafn zaz dcjaqdk gylyzo
                 xzvfbf fopmfxu mvftgr mfupoxf coyhof talcc vpkslo""";
-            System.out.println(part1(input));
+            System.out.println("Solución 1: " + part1(input));
     }
 }
