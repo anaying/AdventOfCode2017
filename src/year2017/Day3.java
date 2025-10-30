@@ -6,8 +6,8 @@ import java.util.List;
 public class Day3 {
     public static void main(String[] args) {
         int input = 361527;
-        System.out.println("Solución 1: " + part1(input));
-        System.out.println("Solución 2: " + part2(input));
+//        System.out.println("Solución 1: " + part1(input));
+//        System.out.println("Solución 2: " + part2(input));
     }
 
     private static int part1(int input) {
