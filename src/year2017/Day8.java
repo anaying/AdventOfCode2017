@@ -1,6 +1,7 @@
 package year2017;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -1031,9 +1032,11 @@ public class Day8 {
                 max = map.get(command[0][0]);
         }
         sc.close();
-        System.out.println("Solución 1: " + map.values().stream().max(Integer::compareTo).get());
+//        System.out.println("Solución 1: " + map.values().stream().max(Integer::compareTo).get());
+        System.out.println("Solución 1: " + map.values().stream().max(Comparator.comparingInt(Integer::intValue)).get());
         System.out.println("Solución 2: " + max);
     }
+
     private static boolean condition(String[] condition) {
         return switch (condition[1]) {
             case ">" -> (map.get(condition[0]) > Integer.parseInt(condition[2]));
