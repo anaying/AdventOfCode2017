@@ -62,4 +62,38 @@ public class Day10 {
         Arrays.stream(denseHash).forEach(x -> result.append(String.format("%02x", x)));
         return result.toString();
     }
+
+    static int[] knotHash (String s) {
+        short size = 256;
+        int[] sparseHash = new int[size];
+        for (int i = 0; i < sparseHash.length; i++)
+            sparseHash[i] = i;
+
+        byte[] bytes = s.getBytes();
+        byte[] concat = {17, 31, 73, 47, 23}, sequence = new byte[bytes.length + concat.length];
+        System.arraycopy(bytes, 0, sequence, 0, bytes.length);
+        System.arraycopy(concat, 0, sequence, bytes.length, concat.length);
+        int skip = 0, position = 0;
+        for (int round = 1; round <= 64; round++) {
+            for (byte length : sequence) {
+                for (int i = 0, j = length - 1; i < length / 2; i++, j--) {
+                    int aux = sparseHash[(i + position) % size];
+                    sparseHash[(i + position) % size] = sparseHash[(j + position) % size];
+                    sparseHash[(j + position) % size] = aux;
+                }
+                position += ((length + skip++) % size);
+            }
+        }
+
+        int[] denseHash = new int[size / 16];
+        for (int i = 0; i < denseHash.length; i++) {
+            int xor = sparseHash[i * 16];
+            for (int j = 1; j < 16; j++) {
+                xor ^= sparseHash[i * 16 + j];
+            }
+            denseHash[i] = xor;
+        }
+
+        return  denseHash;
+    }
 }
