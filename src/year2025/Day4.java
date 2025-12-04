@@ -310,11 +310,11 @@ public class Day4 {
 
             if (removable.isEmpty())
                 removed = false;
-
-            for (Integer[] p : removable) {
-                grid.get(p[0]).set(p[1], false);
-                rolls++;
-            }
+            else
+                for (Integer[] p : removable) {
+                    grid.get(p[0]).set(p[1], false);
+                    rolls++;
+                }
         } while (removed);
         return rolls;
     }
