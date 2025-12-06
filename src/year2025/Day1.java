@@ -3,7 +3,7 @@ package year2025;
 import java.util.Scanner;
 
 public class Day1 {
-    private static String input = """
+    private static final String input = """
             R2
             R6
             L19
@@ -4172,7 +4172,7 @@ public class Day1 {
             L42
             L25
             L30""";
-    private static String tester = """
+    private static final String tester = """
             L68
             L30
             R48
@@ -4201,7 +4201,26 @@ public class Day1 {
         return password;
     }
 
+    private static int part2() {
+        Scanner sc = new Scanner(input);
+        int dial = 50, password = 0;
+        while (sc.hasNextLine()) {
+            String line = sc.nextLine();
+            if (line.charAt(0) == 'R') {
+                for (int i = 0; i < Integer.parseInt(line.substring(1)); i++)
+                    if (++dial % 100 == 0)
+                        password++;
+            }
+            else
+                for (int i = 0; i < Integer.parseInt(line.substring(1)); i++)
+                    if (--dial % 100 == 0)
+                        password++;
+        }
+        return password;
+    }
+
     public static void main(String[] args) {
         System.out.println("Solución 1: " + part1());
+        System.out.println("Solución 2: " + part2());
     }
 }
