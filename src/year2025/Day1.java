@@ -1,8 +1,6 @@
 package year2025;
 
-import java.util.Arrays;
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class Day1 {
     private static String input = """

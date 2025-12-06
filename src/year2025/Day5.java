@@ -1,6 +1,8 @@
 package year2025;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Scanner;
 
 public class Day5 {
     private static final String tester = """
