@@ -1203,7 +1203,7 @@ public class Day5 {
             
             """;
 
-    private static void part1() {
+    private static long part1() {
         Scanner sc = new Scanner(input);
         ArrayList<Long[]> ids = new ArrayList<>();
         int fresh = 0;
@@ -1215,7 +1215,6 @@ public class Day5 {
         }
         do {
             long id = Long.parseLong(sc.nextLine());
-//            boolean bool = true;
             for (Long[] range : ids) {
                 if (id >= range[0] && id <= range[1]) {
                     fresh++;
@@ -1224,10 +1223,10 @@ public class Day5 {
             }
         } while (sc.hasNextLine());
         sc.close();
-        System.out.println(fresh);
+        return fresh;
     }
 
-    private static void part2() {
+    private static long part2() {
         ArrayList<Long[]> ranges = new ArrayList<>();
         Scanner sc = new Scanner(input);
         String line = sc.nextLine();
@@ -1237,23 +1236,6 @@ public class Day5 {
             line = sc.nextLine();
         }
         sc.close();
-/*
-        ranges.sort((x, y) -> {
-            int c = x[0].compareTo(y[0]);
-            if (c != 0)
-                return c;
-            else
-                return x[1].compareTo(y[1]);
-        });
-        long fresh = ranges.getFirst()[1] - ranges.getFirst()[0] + 1;
-        for (int i = 1; i < ranges.size(); i++) {
-            if (ranges.get(i)[0] > ranges.get(i - 1)[1])
-                fresh += ranges.get(i)[1] - ranges.get(i)[0] + 1;
-            else if (ranges.get(i)[1] > ranges.get(i - 1)[1])
-                fresh += ranges.get(i)[1] - ranges.get(i - 1)[1];
-
-        }
-*/
         ranges.sort(Comparator.comparing(x -> x[0]));
         long fresh = 0, top = 0;
         for (Long[] range : ranges) {
@@ -1265,13 +1247,11 @@ public class Day5 {
                 top = range[1];
             }
         }
-        System.out.println(fresh);
-//        ranges.forEach(r -> System.out.println(r[0] + "-" + r[1]));
-
+        return fresh;
     }
 
     public static void main(String[] args) {
-//        part1();
-        part2();
+        System.out.println("Solución 1: " + part1());
+        System.out.println("Solución 2: " + part2());
     }
 }
