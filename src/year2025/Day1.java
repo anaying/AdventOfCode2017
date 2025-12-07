@@ -4203,6 +4203,26 @@ public class Day1 {
 
     private static int part2() {
         Scanner sc = new Scanner(input);
+        int dial1 = 50, password = 0;
+        while (sc.hasNextLine()) {
+            String line = sc.nextLine();
+            int dial0 = dial1;
+            int rotation = Integer.parseInt(line.substring(1)) * (line.charAt(0) == 'R' ? 1 : -1);
+            password += Math.abs(rotation / 100);
+            rotation %= 100;
+            dial1 += rotation;
+            if (dial1 * dial0 < 0 || dial1 == 0 || dial1 >= 100)
+                password++;
+            if (dial1 < 0 || dial1 >= 100)
+                dial1 -= 100 * Integer.signum(dial1);
+        }
+        sc.close();
+        return password;
+    }
+
+/*
+    private static int part2() {
+        Scanner sc = new Scanner(input);
         int dial = 50, password = 0;
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
@@ -4218,9 +4238,10 @@ public class Day1 {
         }
         return password;
     }
+*/
 
     public static void main(String[] args) {
-        System.out.println("Solución 1: " + part1());
+//        System.out.println("Solución 1: " + part1());
         System.out.println("Solución 2: " + part2());
     }
 }
