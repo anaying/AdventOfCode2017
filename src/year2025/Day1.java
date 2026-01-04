@@ -4241,7 +4241,7 @@ public class Day1 {
 */
 
     public static void main(String[] args) {
-//        System.out.println("Solución 1: " + part1());
+        System.out.println("Solución 1: " + part1());
         System.out.println("Solución 2: " + part2());
     }
 }

@@ -1,7 +1,6 @@
 package year2025;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class Day3 {
     private static final String tester = """
@@ -243,7 +242,31 @@ public class Day3 {
         return pos;
     }
 
+    private static long part2() {
+        Scanner sc = new Scanner(input);
+        char[] line;
+        long sum = 0;
+        int[] pos;
+        while (sc.hasNextLine()) {
+            line = sc.nextLine().toCharArray();
+            pos = new int[12];
+            for (int i = 0; i < pos.length; i++) {
+                if (i != 0)
+                    pos[i] = pos[i - 1] + 1;
+                for (int j = i == 0 ? 1 : pos[i - 1] + 2; j <= line.length - pos.length + i; j++) {
+                    if (line[j] > line[pos[i]])
+                        pos[i] = j;
+                }
+            }
+            for (int i = 0; i < pos.length; i++)
+                sum += (long) (Long.parseLong(String.valueOf(line[pos[i]])) * Math.pow(10, pos.length - i - 1));
+        }
+        sc.close();
+        return sum;
+    }
+
     public static void main(String[] args) {
-        System.out.println(part1());
+        System.out.println("Solución 1: " + part1());
+        System.out.println("Solución 2: " + part2());
     }
 }

@@ -198,6 +198,44 @@ public class Day7 {
         return splits;
     }
 
+/*
+    private static void part2() {
+        Scanner sc = new Scanner(input);
+        char[] line = sc.nextLine().toCharArray();
+        int salida = salida(line);
+        while (sc.hasNextLine()) {
+            line = sc.nextLine().toCharArray();
+            boolean[] splitters = new boolean[line.length];
+            for (int i = 0; i < line.length; i++) {
+                if (line[i] == '^')
+                    splitters[i] = true;
+            }
+            diagram.add(splitters);
+        }
+        sc.close();
+        System.out.println(method(0, salida));
+    }
+
+    private static int salida(char[] line) {
+        for (int i = 0; i < line.length; i++) {
+            if (line[i] == 'S')
+                return i;
+        }
+        return -1;
+    }
+
+    private static int method(int i, int j) {
+        if (i < diagram.size()) {
+            if (diagram.get(i)[j]) {
+                return method(i + 1, j - 1) + method(i + 1, j + 1);
+            }
+            else
+                return method(i + 1, j);
+        }
+        return 1;
+    }
+*/
+
     private static long part2() {
         Scanner sc = new Scanner(input);
         char[] line = sc.nextLine().toCharArray();
